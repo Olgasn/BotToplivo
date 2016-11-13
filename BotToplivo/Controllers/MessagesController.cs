@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
-using Newtonsoft.Json;
+using AIMLbot;
 
 namespace BotToplivo
 {
@@ -17,16 +15,31 @@ namespace BotToplivo
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
+        /// 
+        Bot myBot = new Bot();
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                myBot.loadSettings();
+                User myUser = new User("consoleUser", myBot);
+                myBot.isAcceptingUserInput = false;
+                myBot.loadAIMLFromFiles();
+                myBot.isAcceptingUserInput = true;
+                
+           
+                
+
+
+
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
                 // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
+                //int length = (activity.Text ?? string.Empty).Length;
+                Request r = new Request(activity.Text, myUser, myBot);
+                Result res = myBot.Chat(r);
 
                 // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                Activity reply = activity.CreateReply(res.Output);
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else

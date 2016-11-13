@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BotToplivo</RootNamespace>
-    <AssemblyName>Bot Application1</AssemblyName>
+    <AssemblyName>BotToplivo</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -111,6 +111,13 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config\DefaultPredicates.xml" />
+    <Content Include="config\GenderSubstitutions.xml" />
+    <Content Include="config\Person2Substitutions.xml" />
+    <Content Include="config\PersonSubstitutions.xml" />
+    <Content Include="config\Settings.xml" />
+    <Content Include="config\Splitters.xml" />
+    <Content Include="config\Substitutions.xml" />
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -127,12 +134,49 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="aiml\AI.aiml" />
+    <Content Include="aiml\Atomic.aiml" />
+    <Content Include="aiml\Biography.aiml" />
+    <Content Include="aiml\Bot.aiml" />
+    <Content Include="aiml\Botmaster.aiml" />
+    <Content Include="aiml\Client.aiml" />
+    <Content Include="aiml\Computers.aiml" />
+    <Content Include="aiml\Default.aiml" />
+    <Content Include="aiml\Emotion.aiml" />
+    <Content Include="aiml\Food.aiml" />
+    <Content Include="aiml\Geography.aiml" />
+    <Content Include="aiml\History.aiml" />
+    <Content Include="aiml\Inquiry.aiml" />
+    <Content Include="aiml\Interjection.aiml" />
+    <Content Include="aiml\IU.aiml" />
+    <Content Include="aiml\Knowledge.aiml" />
+    <Content Include="aiml\Literature.aiml" />
+    <Content Include="aiml\Money.aiml" />
+    <Content Include="aiml\Movies.aiml" />
+    <Content Include="aiml\Music.aiml" />
+    <Content Include="aiml\Philosophy.aiml" />
+    <Content Include="aiml\Pickup.aiml" />
+    <Content Include="aiml\Predicates.aiml" />
+    <Content Include="aiml\Reduce.aiml" />
+    <Content Include="aiml\Reductions.aiml" />
+    <Content Include="aiml\Salutations.aiml" />
+    <Content Include="aiml\Science.aiml" />
+    <Content Include="aiml\Stack.aiml" />
+    <Content Include="aiml\Stories.aiml" />
+    <Content Include="aiml\Test.aiml" />
+    <Content Include="aiml\That.aiml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIMLbot\AIMLbot\AIMLbot.csproj">
+      <Project>{9c87d82c-0e27-4995-a2cb-72bcb84ef2e2}</Project>
+      <Name>AIMLbot</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

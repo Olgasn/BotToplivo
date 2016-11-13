@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BotToplivo")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("AIMLbot")]
+[assembly: AssemblyDescription("An implementation of an AIML interpreting chatter bot")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BotToplivo")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("ntoll.org")]
+[assembly: AssemblyProduct("AIMLbot")]
+[assembly: AssemblyCopyright("Copyright ©  2006 Nicholas H.Tollervey (ntoll@ntoll.org)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a8ba1066-5695-4d71-abb4-65e5a5e0c3d4")]
+[assembly: Guid("08e95c38-dcde-412e-9389-9f8706ae00c1")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 
 namespace BotToplivo
 {
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
             // Json settings
@@ -18,7 +16,7 @@ namespace BotToplivo
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Formatting = Newtonsoft.Json.Formatting.Indented,
+                Formatting = Formatting.Indented,
                 NullValueHandling = NullValueHandling.Ignore,
             };
 
