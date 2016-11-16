@@ -42,7 +42,7 @@ namespace AIMLbot.AIMLTagHandlers
                 {
                     if (query.TopicStar.Count > 0)
                     {
-                        return (string)query.TopicStar[0];
+                        return query.TopicStar[0];
                     }
                     else
                     {
@@ -62,7 +62,7 @@ namespace AIMLbot.AIMLTagHandlers
                                 {
                                     if (result > 0)
                                     {
-                                        return (string)query.TopicStar[result - 1];
+                                        return query.TopicStar[result - 1];
                                     }
                                     else
                                     {

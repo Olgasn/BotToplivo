@@ -139,8 +139,6 @@
     <Compile Include="DAL\FuelRepository.cs" />
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\OperationReposiroty.cs" />
-    <Compile Include="DAL\PagedCollection.cs" />
-    <Compile Include="DAL\PageInfo.cs" />
     <Compile Include="DAL\Repository.cs" />
     <Compile Include="DAL\TankRepository.cs" />
     <Compile Include="DAL\ToplivoContext.cs" />
@@ -188,6 +186,7 @@
     <Content Include="aiml\Stories.aiml" />
     <Content Include="aiml\Test.aiml" />
     <Content Include="aiml\That.aiml" />
+    <Content Include="aiml\Toplivo.aiml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +199,9 @@
       <Project>{9c87d82c-0e27-4995-a2cb-72bcb84ef2e2}</Project>
       <Name>AIMLbot</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

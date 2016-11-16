@@ -57,7 +57,7 @@ namespace AIMLbot.Normalize
         /// <returns>An array of strings representing the constituent "sentences"</returns>
         public string[] Transform()
         {
-            string[] tokens = (string[])bot.Splitters.ToArray();
+            string[] tokens = bot.Splitters.ToArray();
             string[] rawResult = inputString.Split(tokens, System.StringSplitOptions.RemoveEmptyEntries);
             List<string> tidyResult = new List<string>();
             foreach (string rawSentence in rawResult)
@@ -68,7 +68,7 @@ namespace AIMLbot.Normalize
                     tidyResult.Add(tidySentence);
                 }
             }
-            return (string[])tidyResult.ToArray();
+            return tidyResult.ToArray();
         }
     }
 }

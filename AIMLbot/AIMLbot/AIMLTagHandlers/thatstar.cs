@@ -45,7 +45,7 @@ namespace AIMLbot.AIMLTagHandlers
                 {
                     if (query.ThatStar.Count > 0)
                     {
-                        return (string)query.ThatStar[0];
+                        return query.ThatStar[0];
                     }
                     else
                     {
@@ -65,7 +65,7 @@ namespace AIMLbot.AIMLTagHandlers
                                 {
                                     if (result > 0)
                                     {
-                                        return (string)query.ThatStar[result - 1];
+                                        return query.ThatStar[result - 1];
                                     }
                                     else
                                     {

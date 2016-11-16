@@ -45,20 +45,6 @@ namespace BotToplivo.Models
             return db.Set<T>();
         }
         //Возвращает коллекцию объектов, удовлетворяющих заданному условию, для размещения на странице заданного размера и номера
-        public PagedCollection<T> GetNumberItems(Func<T, bool> predicate, int page = 1, int pageSize = 30)
-        {
-            IEnumerable<T> items = db.Set<T>().Where(predicate).OrderBy(t => t);
-            int totalitems = items.Count();
-            if ((int)Math.Ceiling((decimal)totalitems / totalitems) < page) { page = 1; };
-            //Если параметр page=0 разбиения будут возвращаться все объекты
-            if (page != 0)
-            {
-                items = items.Skip((page - 1) * pageSize).Take(pageSize);
-            };
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = totalitems };
-            PagedCollection<T> viewfuels = new PagedCollection<T> { PageInfo = pageInfo, PagedItems = items };
-            return viewfuels;
-        }
         //Сохранение сделанных изменений
         public void Save()
         {

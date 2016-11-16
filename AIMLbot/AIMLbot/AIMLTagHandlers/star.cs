@@ -48,7 +48,7 @@ namespace AIMLbot.AIMLTagHandlers
                     if (templateNode.Attributes.Count == 0)
                     {
                         // return the first (latest) star in the List<>
-                        return (string)query.InputStar[0];
+                        return query.InputStar[0];
                     }
                     else if (templateNode.Attributes.Count == 1)
                     {
@@ -60,7 +60,7 @@ namespace AIMLbot.AIMLTagHandlers
                                 index--;
                                 if ((index >= 0) & (index < query.InputStar.Count))
                                 {
-                                    return (string)query.InputStar[index];
+                                    return query.InputStar[index];
                                 }
                                 else
                                 {

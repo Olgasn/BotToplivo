@@ -49,7 +49,7 @@ namespace AIMLbot.AIMLTagHandlers
                     if (listNodes.Count > 0)
                     {
                         Random r = new Random();
-                        XmlNode chosenNode = (XmlNode)listNodes[r.Next(listNodes.Count)];
+                        XmlNode chosenNode = listNodes[r.Next(listNodes.Count)];
                         return chosenNode.InnerXml;
                     }
                 }

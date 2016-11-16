@@ -313,8 +313,8 @@ namespace AIMLbot.Utils
             StringBuilder result = new StringBuilder();
 
             // objects for normalization of the input
-            Normalize.ApplySubstitutions substitutor = new AIMLbot.Normalize.ApplySubstitutions(bot);
-            Normalize.StripIllegalCharacters stripper = new AIMLbot.Normalize.StripIllegalCharacters(bot);
+            Normalize.ApplySubstitutions substitutor = new Normalize.ApplySubstitutions(bot);
+            Normalize.StripIllegalCharacters stripper = new Normalize.StripIllegalCharacters(bot);
 
             string substitutedInput = substitutor.Transform(input);
             // split the pattern into it's component words

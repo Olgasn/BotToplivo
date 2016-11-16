@@ -9,7 +9,6 @@ namespace BotToplivo.Models
     {
         IEnumerable<T> GetAll();//получить коллекцию из всех объектов
         T Get(int id);//получить объект по индексу
-        PagedCollection<T> GetNumberItems(Func<T, bool> predicate, int page = 1, int pageSize = 30);//получить коллекцию pageSize объектов расположенных на page странице и удовлетворяющих заданному условияю
         IEnumerable<T> Find(Func<T, bool> predicate);//получить коллекцию объектов, удовлетворяющих заданному условию
         void Create(T item);//создать объект
         void Delete(int id);//удалить объект

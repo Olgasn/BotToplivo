@@ -288,7 +288,9 @@ namespace AIMLbot
         {
             get
             {
-                return Path.Combine(Environment.CurrentDirectory, GlobalSettings.grabSetting("logdirectory"));
+                string pathTologdirectory = @"~\" + GlobalSettings.grabSetting("logdirectory");
+                pathTologdirectory = System.Web.Hosting.HostingEnvironment.MapPath(pathTologdirectory);
+                return pathTologdirectory;
             }
         }
 
@@ -300,7 +302,7 @@ namespace AIMLbot
         /// <summary>
         /// The "brain" of the bot
         /// </summary>
-        public AIMLbot.Utils.Node Graphmaster;
+        public Node Graphmaster;
 
         /// <summary>
         /// If set to false the input from AIML files will undergo the same normalization process that
@@ -372,7 +374,7 @@ namespace AIMLbot
             Substitutions = new SettingsDictionary(this);
             DefaultPredicates = new SettingsDictionary(this);
             CustomTags = new Dictionary<string, TagHandler>();
-            Graphmaster = new AIMLbot.Utils.Node(); 
+            Graphmaster = new Node(); 
         }
 
         /// <summary>
@@ -447,7 +449,7 @@ namespace AIMLbot
             }
             if (!GlobalSettings.containsSettingCalled("islogging"))
             {
-                GlobalSettings.addSetting("islogging", "False");
+                GlobalSettings.addSetting("islogging", "True");
             }
             if (!GlobalSettings.containsSettingCalled("willcallhome"))
             {
@@ -455,7 +457,7 @@ namespace AIMLbot
             }
             if (!GlobalSettings.containsSettingCalled("timeout"))
             {
-                GlobalSettings.addSetting("timeout", "2000");
+                GlobalSettings.addSetting("timeout", "6000");
             }
             if (!GlobalSettings.containsSettingCalled("timeoutmessage"))
             {
@@ -463,7 +465,7 @@ namespace AIMLbot
             }
             if (!GlobalSettings.containsSettingCalled("culture"))
             {
-                GlobalSettings.addSetting("culture", "en-US");
+                GlobalSettings.addSetting("culture", "ru");
             }
             if (!GlobalSettings.containsSettingCalled("splittersfile"))
             {
@@ -503,7 +505,7 @@ namespace AIMLbot
             }
             if (!GlobalSettings.containsSettingCalled("maxlogbuffersize"))
             {
-                GlobalSettings.addSetting("maxlogbuffersize", "64");
+                GlobalSettings.addSetting("maxlogbuffersize", "16");
             }
             if (!GlobalSettings.containsSettingCalled("notacceptinguserinputmessage"))
             {
@@ -649,7 +651,7 @@ namespace AIMLbot
             {
                 // Normalize the input
                 AIMLLoader loader = new AIMLLoader(this);
-                AIMLbot.Normalize.SplitIntoSentences splitter = new AIMLbot.Normalize.SplitIntoSentences(this);
+                Normalize.SplitIntoSentences splitter = new Normalize.SplitIntoSentences(this);
                 string[] rawSentences = splitter.Transform(request.rawInput);
                 foreach (string sentence in rawSentences)
                 {
@@ -699,6 +701,8 @@ namespace AIMLbot
             // populate the Result object
             result.Duration = DateTime.Now - request.StartedOn;
             request.user.addResult(result);
+            writeToLog("Вопрос: "+result.RawInput);
+            writeToLog("Ответ: "+result.RawOutput);
 
             return result;
         }
@@ -891,7 +895,7 @@ namespace AIMLbot
         {
             if (CustomTags.ContainsKey(node.Name.ToLower()))
             {
-                TagHandler customTagHandler = (TagHandler)CustomTags[node.Name.ToLower()];
+                TagHandler customTagHandler = CustomTags[node.Name.ToLower()];
 
                 AIMLTagHandler newCustomTag = customTagHandler.Instantiate(LateBindingAssemblies);
                 if(object.Equals(null,newCustomTag))

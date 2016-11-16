@@ -58,7 +58,7 @@ namespace AIMLbot
             {
                 if (Results.Count > 0)
                 {
-                    return (Result)Results[0];
+                    return Results[0];
                 }
                 else
                 {
@@ -100,7 +100,7 @@ namespace AIMLbot
         {
             if (Results.Count > 0)
             {
-                return ((Result)Results[0]).RawOutput;
+                return Results[0].RawOutput;
             }
             else
             {
@@ -137,10 +137,10 @@ namespace AIMLbot
         {
             if ((n >= 0) & (n < Results.Count))
             {
-                Result historicResult = (Result)Results[n];
+                Result historicResult = Results[n];
                 if ((sentence >= 0) & (sentence < historicResult.OutputSentences.Count))
                 {
-                    return (string)historicResult.OutputSentences[sentence];
+                    return historicResult.OutputSentences[sentence];
                 }
             }
             return string.Empty;
@@ -175,10 +175,10 @@ namespace AIMLbot
         {
             if ((n >= 0) & (n < Results.Count))
             {
-                Result historicResult = (Result)Results[n];
+                Result historicResult = Results[n];
                 if ((sentence >= 0) & (sentence < historicResult.InputSentences.Count))
                 {
-                    return (string)historicResult.InputSentences[sentence];
+                    return historicResult.InputSentences[sentence];
                 }
             }
             return string.Empty;

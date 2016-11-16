@@ -161,7 +161,7 @@ namespace AIMLbot.Utils
             // wildcard. "_" comes first in precedence in the AIML alphabet
             if (children.ContainsKey("_"))
             {
-                Node childNode = (Node)children["_"];
+                Node childNode = children["_"];
 
                 // add the next word to the wildcard match 
                 StringBuilder newWildcard = new StringBuilder();
@@ -215,7 +215,7 @@ namespace AIMLbot.Utils
                     newMatchstate = MatchState.Topic;
                 }
 
-                Node childNode = (Node)children[firstWord];
+                Node childNode = children[firstWord];
                 // move down into the identified branch of the GraphMaster structure using the new
                 // matchstate
                 StringBuilder newWildcard = new StringBuilder();
@@ -253,7 +253,7 @@ namespace AIMLbot.Utils
             if (children.ContainsKey("*"))
             {
                 // o.k. look for the path in the child node denoted by "*"
-                Node childNode = (Node)children["*"];
+                Node childNode = children["*"];
 
                 // add the next word to the wildcard match 
                 StringBuilder newWildcard = new StringBuilder();

@@ -58,7 +58,7 @@ namespace AIMLbot.Utils
                     XmlAttribute name = result.CreateAttribute("name");
                     name.Value = key;
                     XmlAttribute value = result.CreateAttribute( "value");
-                    value.Value = (string)settingsHash[key];
+                    value.Value = settingsHash[key];
                     item.Attributes.Append(name);
                     item.Attributes.Append(value);
                     root.AppendChild(item);
@@ -222,7 +222,7 @@ namespace AIMLbot.Utils
             string normalizedName = MakeCaseInsensitive.TransformInput(name);
             if (containsSettingCalled(normalizedName))
             {
-                return (string)settingsHash[normalizedName];
+                return settingsHash[normalizedName];
             }
             else
             {

@@ -44,20 +44,7 @@ namespace BotToplivo.Models
             return db.Fuels;
         }
 
-        public PagedCollection<Fuel> GetNumberItems(Func<Fuel, bool> predicate, int page = 1, int pageSize = 20)
-        {
-            IEnumerable<Fuel> fuels= db.Fuels.Where(predicate).OrderBy(o => o.FuelID);
-            int totalitems = fuels.Count();
-            if ((int)Math.Ceiling((decimal)totalitems / pageSize) < page) { page = 1; };
-            if (page != 0) 
-            {
-                fuels = fuels.Skip((page - 1) * pageSize).Take(pageSize);
-            };
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = totalitems };
-            PagedCollection<Fuel> viewfuels = new PagedCollection<Fuel> { PageInfo = pageInfo, PagedItems = fuels };
-            return viewfuels;
-        }
-
+        
         public void Update(Fuel fuel)
         {
             db.Entry(fuel).State=EntityState.Modified;
