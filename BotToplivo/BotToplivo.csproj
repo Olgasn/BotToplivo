@@ -42,10 +42,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.2.0\lib\net45\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Chronic, Version=0.3.2.0, Culture=neutral, PublicKeyToken=3bd1f1ef638b0d3c, processorArchitecture=MSIL">
       <HintPath>..\packages\Chronic.Signed.0.3.2\lib\net40\Chronic.dll</HintPath>
       <Private>True</Private>
@@ -83,10 +79,6 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.30826.1200, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.3.308261200\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -122,6 +114,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Yandex.Speller.Api, Version=1.0.5650.35359, Culture=neutral, PublicKeyToken=13753ec45a8638dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\Yandex.Speller.Api.1.0.5650.35359\lib\net40-Client\Yandex.Speller.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\DefaultPredicates.xml" />
@@ -156,18 +152,6 @@
     <Compile Include="Models\Operation.cs" />
     <Compile Include="Models\Tank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Speller\ArrayOfSpellResult.cs" />
-    <Compile Include="Speller\CharMistakeType.cs" />
-    <Compile Include="Speller\Lang.cs" />
-    <Compile Include="Speller\Mistake.cs" />
-    <Compile Include="Speller\OutputFormat.cs" />
-    <Compile Include="Speller\Speller.cs" />
-    <Compile Include="Speller\SpellerError.cs" />
-    <Compile Include="Speller\SpellerOptions.cs" />
-    <Compile Include="Speller\SpellResult.cs" />
-    <Compile Include="Speller\YandexError.cs" />
-    <Compile Include="Speller\YandexLinguisticsException.cs" />
-    <Compile Include="Speller\YandexService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
