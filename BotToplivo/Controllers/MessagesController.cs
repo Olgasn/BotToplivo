@@ -23,15 +23,24 @@ namespace BotToplivo
             if (activity.Type == ActivityTypes.Message)          {     
 
                 string textinputmessege = activity.Text;
+
                 IYandexSpeller speller = new YandexSpeller();
-                SpellResult result = speller.CheckText(activity.Text, Lang.Ru, Options.Default, TextFormat.Plain);
-
-                if (result.Errors.Count> 0)
+                SpellResult result = speller.CheckText(activity.Text, Lang.Ru | Lang.En, Options.Default, TextFormat.Plain);
+                int countErrs = result.Errors.Count;
+                if (countErrs > 0)
                 {
-                    textinputmessege = result.Errors[0].Steer[0];
+                    for (int i = countErrs; i > 0; i--)
+                    {
+                        var err = result.Errors[i-1];
 
-                };
+                        if (err.Steer.Count > 0)
+                        {
+                            textinputmessege = textinputmessege.Remove(err.Pos, err.Len);
+                            textinputmessege = textinputmessege.Insert(err.Pos, err.Steer[0]);
+                        }
 
+                    };
+                }
                 Bot myBot = new Bot();
                 myBot.loadSettings();
                 User myUser = new User("WebUser", myBot);
