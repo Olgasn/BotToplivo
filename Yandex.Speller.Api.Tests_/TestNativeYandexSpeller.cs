@@ -1,4 +1,5 @@
 ﻿using Xunit;
+
 using Yandex.Speller.Api.DataContract;
 using Yandex.Speller.Api.Native;
 

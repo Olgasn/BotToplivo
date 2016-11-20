@@ -1,10 +1,9 @@
 ﻿using Xunit;
 using Yandex.Speller.Api.DataContract;
-using Yandex.Speller.Api.Native;
 
 namespace Yandex.Speller.Api.Tests
 {
-	public class TestNativeYandexSpeller
+	public class TestYandexSpeller
 	{
 		[Fact]
 		public void Test()
@@ -13,20 +12,21 @@ namespace Yandex.Speller.Api.Tests
 		}
 
 		[Fact]
-		public void TestRequestСheckText()
+		public void TestRequestCheckText()
 		{
-			IYandexNativeSpeller speller = YandexNativeSpeller.CreateYandexNativeSpeller();
-			SpellResult result = speller.CheckText("synchraphasotron", string.Empty, 0, "plain");
+			IYandexSpeller speller = new YandexSpeller();
+			SpellResult result = speller.CheckText("машына", Lang.Ru, Options.Default, TextFormat.Plain);
 			Assert.Equal(result.Errors.Count, 1);
-			Assert.Equal(result.Errors[0].Code, ErrorCode.ErrorUnknownWord);
-			Assert.Equal(result.Errors[0].Steer.Count, 1);
+			Assert.Equal(result.Errors[0].Word, "машына");
+			Assert.Equal(result.Errors[0].Steer[0], "машина");
 		}
 
 		[Fact]
 		public void TestRequestCheckTexts()
 		{
-			IYandexNativeSpeller speller = YandexNativeSpeller.CreateYandexNativeSpeller();
-			SpellResult[] result = speller.CheckTexts(new[] {"synchraphasotron", @"дубне"}, string.Empty, 0, "plain");
+			IYandexSpeller speller = new YandexSpeller();
+			SpellResult[] result = speller.CheckTexts(new[] {"synchraphasotron", @"дубне"},	Lang.En | Lang.Ru, Options.Default,
+				TextFormat.Plain);
 			Assert.Equal(result.Length, 2);
 			Assert.Equal(result[0].Errors.Count, 1);
 			Assert.Equal(result[0].Errors[0].Code, ErrorCode.ErrorUnknownWord);

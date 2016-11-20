@@ -79,6 +79,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=100.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharpSigned.105.0.1\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.30826.1200, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.3.308261200\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -114,10 +118,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Yandex.Speller.Api, Version=1.0.5650.35359, Culture=neutral, PublicKeyToken=13753ec45a8638dd, processorArchitecture=MSIL">
-      <HintPath>..\packages\Yandex.Speller.Api.1.0.5650.35359\lib\net40-Client\Yandex.Speller.Api.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\DefaultPredicates.xml" />
@@ -198,6 +198,10 @@
     <ProjectReference Include="..\AIMLbot\AIMLbot\AIMLbot.csproj">
       <Project>{9c87d82c-0e27-4995-a2cb-72bcb84ef2e2}</Project>
       <Name>AIMLbot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yandex.Speller.Api\Yandex.Speller.Api.csproj">
+      <Project>{459f6a84-441d-4327-8a7b-1a1989aa02d5}</Project>
+      <Name>Yandex.Speller.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Connector;
 using AIMLbot;
+using Yandex.Speller.Api;
+using Yandex.Speller.Api.DataContract;
 
 namespace BotToplivo
 {
@@ -16,27 +18,30 @@ namespace BotToplivo
         /// Receive a message from a user and reply to it
         /// </summary>
         /// 
-        Bot myBot = new Bot();
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if (activity.Type == ActivityTypes.Message)
-            {
+            if (activity.Type == ActivityTypes.Message)          {     
+
+                string textinputmessege = activity.Text;
+                IYandexSpeller speller = new YandexSpeller();
+                SpellResult result = speller.CheckText(activity.Text, Lang.Ru, Options.Default, TextFormat.Plain);
+
+                if (result.Errors.Count> 0)
+                {
+                    textinputmessege = result.Errors[0].Steer[0];
+
+                };
+
+                Bot myBot = new Bot();
                 myBot.loadSettings();
-                User myUser = new User("consoleUser", myBot);
+                User myUser = new User("WebUser", myBot);
                 myBot.isAcceptingUserInput = false;
                 myBot.loadAIMLFromFiles();
                 myBot.isAcceptingUserInput = true;
-                
-           
-                
 
-
-
-                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                //int length = (activity.Text ?? string.Empty).Length;
-                Request r = new Request(activity.Text, myUser, myBot);
+                Request r = new Request(textinputmessege, myUser, myBot);
                 Result res = myBot.Chat(r);
+                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
                 // return our reply to the user
                 Activity reply = activity.CreateReply(res.Output);
