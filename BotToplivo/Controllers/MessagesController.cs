@@ -22,7 +22,8 @@ namespace BotToplivo
         {
             if (activity.Type == ActivityTypes.Message)          {     
 
-                string textinputmessege = activity.Text;
+                //Корректировка правописания запроса
+                string inputmessage = activity.Text;
 
                 IYandexSpeller speller = new YandexSpeller();
                 SpellResult result = speller.CheckText(activity.Text, Lang.Ru | Lang.En, Options.Default, TextFormat.Plain);
@@ -35,8 +36,8 @@ namespace BotToplivo
 
                         if (err.Steer.Count > 0)
                         {
-                            textinputmessege = textinputmessege.Remove(err.Pos, err.Len);
-                            textinputmessege = textinputmessege.Insert(err.Pos, err.Steer[0]);
+                            inputmessage = inputmessage.Remove(err.Pos, err.Len);
+                            inputmessage = inputmessage.Insert(err.Pos, err.Steer[0]);
                         }
 
                     };
@@ -48,12 +49,14 @@ namespace BotToplivo
                 myBot.loadAIMLFromFiles();
                 myBot.isAcceptingUserInput = true;
 
-                Request r = new Request(textinputmessege, myUser, myBot);
+                Request r = new Request(inputmessage, myUser, myBot);
                 Result res = myBot.Chat(r);
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
                 // return our reply to the user
-                Activity reply = activity.CreateReply(res.Output);
+
+                string outputmessage = res.Output;
+                Activity reply = activity.CreateReply(outputmessage);
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else
