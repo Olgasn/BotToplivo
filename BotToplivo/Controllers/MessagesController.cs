@@ -20,42 +20,13 @@ namespace BotToplivo
         /// 
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if (activity.Type == ActivityTypes.Message)          {     
-
-                //Корректировка правописания запроса
-                string inputmessage = activity.Text;
-
-                IYandexSpeller speller = new YandexSpeller();
-                SpellResult result = speller.CheckText(activity.Text, Lang.Ru | Lang.En, Options.Default, TextFormat.Plain);
-                int countErrs = result.Errors.Count;
-                if (countErrs > 0)
-                {
-                    for (int i = countErrs; i > 0; i--)
-                    {
-                        var err = result.Errors[i-1];
-
-                        if (err.Steer.Count > 0)
-                        {
-                            inputmessage = inputmessage.Remove(err.Pos, err.Len);
-                            inputmessage = inputmessage.Insert(err.Pos, err.Steer[0]);
-                        }
-
-                    };
-                }
-                Bot myBot = new Bot();
-                myBot.loadSettings();
-                User myUser = new User("WebUser", myBot);
-                myBot.isAcceptingUserInput = false;
-                myBot.loadAIMLFromFiles();
-                myBot.isAcceptingUserInput = true;
-
-                Request r = new Request(inputmessage, myUser, myBot);
-                Result res = myBot.Chat(r);
+            if (activity.Type == ActivityTypes.Message)
+            {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-
+                //Получение ответа
+                Replay replay = new Replay { InputMessage = activity.Text };
+                string outputmessage = replay.MessageFromAIML;
                 // return our reply to the user
-
-                string outputmessage = res.Output;
                 Activity reply = activity.CreateReply(outputmessage);
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }

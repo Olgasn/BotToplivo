@@ -69,7 +69,7 @@ namespace AIMLbot
                         {
                             paths.Append(pattern + Environment.NewLine);
                         }
-                        bot.writeToLog("The bot could not find any response for the input: " + RawInput + " with the path(s): " + Environment.NewLine + paths.ToString() + " from the user with an id: " + user.UserID);
+                        bot.writeToLog("Бот не может найти никакого ответа для вопроса: " + RawInput + " с путем: " + Environment.NewLine + paths.ToString() + " от пользователя: " + user.UserID);
                         return string.Empty;
                     }
                 }
